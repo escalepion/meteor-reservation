@@ -1,3 +1,2 @@
-# Boilerplate of meteor project. 
-
-Basic meteor and react setups.
+# Meteor project
+A meteor project that you can make reservations in a selected day. 
