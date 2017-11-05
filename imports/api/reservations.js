@@ -30,13 +30,13 @@ Meteor.methods({
                date
            }, {
                $set: {
-                   [hour]: 'semiha'
+                   [hour]: { name: 'semiha', phone: '123'}
                }
            });
         }else {
             return Reservations.insert({
                 date,
-                [hour]: 'akif'
+                [hour]: {name: 'akif', phone: '456'}
             });
         };
         

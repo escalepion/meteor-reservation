@@ -11,7 +11,7 @@ class ReservationListItem extends Component{
         return (
             <div>
                <p>
-                    {this.props.hour}:{this.props.person}
+                    {this.props.hour}:{this.props.person && this.props.person.name}
                     <button className="btn btn-primary" data-toggle="modal" data-target="#myModal" onClick={this.handleClick.bind(this)}>
                         Click Me
                     </button>

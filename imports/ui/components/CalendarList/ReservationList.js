@@ -40,9 +40,15 @@ class ReservationList extends Component {
         });
     }
     render () {
+        let person;
+        if(this.props.fetchDayReservations && Session.get('selectedHour') !== undefined) {
+            console.log('triggered');
+            person = this.props.fetchDayReservations[0];
+        }
+        console.log(person, Session.get('selectedHour'));
         return (
             <div>
-                <ReservationModal selectedHour={this.state.selectedHour}/>
+                <ReservationModal person={person} selectedHour={this.state.selectedHour}/>
                 <h1>{this.props.date}</h1>
                 {this.listDays()}
                 

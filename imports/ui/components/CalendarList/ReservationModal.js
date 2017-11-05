@@ -7,7 +7,6 @@ class ReservationModal extends Component {
     this.state = {error: ''};
   }
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.selectedHour);
     this.setState({ error: '' });
     typeof(nextProps.selectedHour) !== 'number' && this.setState({ error: 'There is no selected hour.'});
   }
@@ -42,7 +41,8 @@ class ReservationModal extends Component {
               <h4 className="modal-title">{this.props.selectedHour}</h4>
             </div>
             <div className="modal-body">
-              <p>asdasd</p>
+              <input value={this.props.person && this.props.person.name} placeholder="Name" />
+              <input value={this.props.person && this.props.person.phone} placeholder="5051541212" />
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
