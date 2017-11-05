@@ -40,7 +40,6 @@ class ReservationList extends Component {
         });
     }
     render () {
-        console.log(Session.get('selectedHour'));
         return (
             <div>
                 <ReservationModal selectedHour={this.state.selectedHour}/>
