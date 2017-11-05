@@ -1,14 +1,29 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
 
 
 class ReservationModal extends Component {
   constructor(props) {
     super(props);
-    this.state = {error: ''};
+    this.state = {
+      error: '',
+      name: '',
+      phone: ''
+    };
   }
   componentWillReceiveProps(nextProps) {
     this.setState({ error: '' });
     typeof(nextProps.selectedHour) !== 'number' && this.setState({ error: 'There is no selected hour.'});
+    !!this.props.person && this.setState({ name: this.props.person.name, phone: this.props.person.phone});
+  }
+  onNameChange(e) {
+    this.setState({ name: e.target.value });
+  }
+  onPhoneChange(e) {
+    this.setState({ phone: e.target.value });
+  }
+  onAddButtonClick() {
+    Meteor.call('reservation.insert', this.props.date, this.props.selectedHour, this.state.name, this.state.phone);
   }
   renderModalContent() {
     if(this.state.error !== ''){
@@ -37,14 +52,15 @@ class ReservationModal extends Component {
           <div className="modal-content">
             <div className="modal-header">
               <button type="button" className="close" data-dismiss="modal">&times;</button>
-              <h4 className="modal-title">Modal Header</h4>
+              <h4 className="modal-title">{this.props.date}</h4>
               <h4 className="modal-title">{this.props.selectedHour}</h4>
             </div>
             <div className="modal-body">
-              <input value={this.props.person && this.props.person.name} placeholder="Name" />
-              <input value={this.props.person && this.props.person.phone} placeholder="5051541212" />
+              <input value={this.state.name} onChange={this.onNameChange.bind(this)} placeholder="Name" />
+              <input value={this.state.phone} onChange={this.onPhoneChange.bind(this)} placeholder="5051541212" />
             </div>
             <div className="modal-footer">
+              <button onClick={this.onAddButtonClick.bind(this)}>Add/Change</button>
               <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>

@@ -10,7 +10,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'reservation.insert'(date, hour, person) {
+    'reservation.insert'(date, hour, name, phone) {
         new SimpleSchema({
             date: {
                 type: String,
@@ -30,13 +30,13 @@ Meteor.methods({
                date
            }, {
                $set: {
-                   [hour]: { name: 'semiha', phone: '123'}
+                   [hour]: { name, phone}
                }
            });
         }else {
             return Reservations.insert({
                 date,
-                [hour]: {name: 'akif', phone: '456'}
+                [hour]: {name, phone}
             });
         };
         
