@@ -37,6 +37,9 @@ Meteor.methods({
             return Reservations.insert({
                 date,
                 [hour]: {name, phone}
+            }, function(error,response) {
+                console.log(error);
+                console.log(response);
             });
         };
         

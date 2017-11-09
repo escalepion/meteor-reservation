@@ -7,14 +7,16 @@ class ReservationModal extends Component {
     super(props);
     this.state = {
       error: '',
+      errorInsert: '',
       name: '',
       phone: ''
     };
   }
   componentWillReceiveProps(nextProps) {
     this.setState({ error: '' });
+    this.setState({ errorInsert:'' });
     typeof(nextProps.selectedHour) !== 'number' && this.setState({ error: 'There is no selected hour.'});
-    !!this.props.person && this.setState({ name: this.props.person.name, phone: this.props.person.phone});
+    nextProps.person !== undefined && this.setState({ name: nextProps.person.name, phone: nextProps.person.phone});
   }
   onNameChange(e) {
     this.setState({ name: e.target.value });
@@ -23,7 +25,13 @@ class ReservationModal extends Component {
     this.setState({ phone: e.target.value });
   }
   onAddButtonClick() {
-    Meteor.call('reservation.insert', this.props.date, this.props.selectedHour, this.state.name, this.state.phone);
+    Meteor.call('reservation.insert', this.props.date, this.props.selectedHour, this.state.name, this.state.phone, function(err, res) {
+      if(!err) {
+        this.setState({ errorInsert: 'Added succesfuly' });
+      }else {
+        console.log(err.reason);
+      }
+    }.bind(this));
   }
   renderModalContent() {
     if(this.state.error !== ''){
@@ -58,7 +66,8 @@ class ReservationModal extends Component {
             <div className="modal-body">
               <input value={this.state.name} onChange={this.onNameChange.bind(this)} placeholder="Name" />
               <input value={this.state.phone} onChange={this.onPhoneChange.bind(this)} placeholder="5051541212" />
-            </div>
+              <p>{this.state.errorInsert}</p>
+              </div>
             <div className="modal-footer">
               <button onClick={this.onAddButtonClick.bind(this)}>Add/Change</button>
               <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
