@@ -92,9 +92,6 @@ class ReservationModal extends Component {
     render() {
         return (
           <div>
-            <button className="btn btn-primary" data-toggle="modal" data-target="#myModal">
-              Click Me
-            </button>
             {this.renderModalContent()}
           </div>
         );
