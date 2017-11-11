@@ -29,8 +29,9 @@ Meteor.methods({
                 min: 1
             },
             phone: {
-                type: Number,
-                label: 'Phone'
+                type: String,
+                label: 'Phone',
+                min: 1
             }
         }).validate({date, hour, name, phone});
        const findReservation = Reservations.findOne({ date });
