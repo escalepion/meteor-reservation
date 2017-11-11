@@ -42,7 +42,6 @@ class ReservationList extends Component {
     render () {
         let person = { name: '', phone: '' };
         if(this.props.fetchDayReservations && Session.get('selectedHour') !== undefined) {
-            console.log('triggered');
             if (this.props.fetchDayReservations[Session.get('selectedHour')]) {
                 person = this.props.fetchDayReservations[Session.get('selectedHour')];
             }

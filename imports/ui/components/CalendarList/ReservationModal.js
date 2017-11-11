@@ -29,7 +29,16 @@ class ReservationModal extends Component {
       if(!err) {
         this.setState({ errorInsert: 'Added succesfuly' });
       }else {
-        console.log(err.reason);
+        this.setState({ errorInsert: err.reason });
+      }
+    }.bind(this));
+  }
+  onDeleteButtonClick() {
+    Meteor.call('reservation.delete', this.props.date, this.props.selectedHour, function(err, res){
+      if(!err){
+        this.setState({ errorInsert: 'Deleted succesfully' });
+      }else {
+        this.setState({ errorInsert: err.reason });
       }
     }.bind(this));
   }
@@ -70,6 +79,7 @@ class ReservationModal extends Component {
               </div>
             <div className="modal-footer">
               <button onClick={this.onAddButtonClick.bind(this)}>Add/Change</button>
+              <button className={`btn ${this.state.name === '' && this.state.phone === '' && 'disabled'}`} onClick={this.onDeleteButtonClick.bind(this)}>Delete</button>
               <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>

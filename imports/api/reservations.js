@@ -22,8 +22,17 @@ Meteor.methods({
                 label: 'Hour',
                 min: 0,
                 max: 24
+            },
+            name: {
+                type: String,
+                label: 'Name',
+                min: 1
+            },
+            phone: {
+                type: Number,
+                label: 'Phone'
             }
-        }).validate({date, hour});
+        }).validate({date, hour, name, phone});
        const findReservation = Reservations.findOne({ date });
         if(findReservation) {
            Reservations.update({
@@ -31,7 +40,7 @@ Meteor.methods({
            }, {
                $set: {
                    [hour]: { name, phone}
-               }
+                    }
            });
         }else {
             return Reservations.insert({
@@ -43,5 +52,17 @@ Meteor.methods({
             });
         };
         
+    },
+    'reservation.delete'(date, hour) {
+        const findReservation = Reservations.findOne({ date });
+        if(findReservation) {
+            Reservations.update({
+                date
+            },{
+                $set: {
+                    [hour]: null
+                }
+            });
+        }
     }
 });
