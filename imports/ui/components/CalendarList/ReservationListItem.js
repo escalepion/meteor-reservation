@@ -12,8 +12,8 @@ class ReservationListItem extends Component{
         if (!this.props.person){
             return (
             <div>
-                <p>
-                    {Hours[this.props.hour]} Add a reservation.
+                <p className="person">
+                    <span className="no-person">{Hours[this.props.hour]}Add a reservation.</span>
                     <button className="btn btn-primary" data-toggle="modal" data-target="#myModal" onClick={this.handleClick.bind(this)}>
                         Add/Change
                     </button>
@@ -24,8 +24,8 @@ class ReservationListItem extends Component{
 
         return (
             <div>
-                <p>
-                    {Hours[this.props.hour]} {this.props.person.name} {this.props.person.phone}
+                <p className="person">
+                    <span className="person-span">{Hours[this.props.hour]} {this.props.person.name} {this.props.person.phone}</span>
                     <button className="btn btn-primary" data-toggle="modal" data-target="#myModal" onClick={this.handleClick.bind(this)}>
                         Add/Change
                     </button>
