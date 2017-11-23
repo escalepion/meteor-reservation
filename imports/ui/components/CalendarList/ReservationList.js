@@ -5,6 +5,7 @@ import { Tracker } from 'meteor/tracker';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import { Reservations } from '../../../api/reservations';
+import { Hours } from '../../static/hours';
 
 import ReservationListItem from './ReservationListItem';
 import ReservationModal from './ReservationModal';
@@ -49,7 +50,7 @@ class ReservationList extends Component {
 
         return (
             <div>
-                <ReservationModal date={this.props.date} person={person} selectedHour={this.state.selectedHour}/>
+                <ReservationModal date={this.props.date} person={person} selectedHour={Hours[this.state.selectedHour]}/>
                 <h1>{this.props.date}</h1>
                 {this.listDays()}
                 

@@ -11,26 +11,29 @@ class ReservationListItem extends Component{
 
         if (!this.props.person){
             return (
-            <div>
-                <p className="person">
-                    <span className="no-person">{Hours[this.props.hour]}Add a reservation.</span>
+            <div className="person">
+                <div className="person__hour"><span>{Hours[this.props.hour]}</span></div>
+                <div className="person__info text-left"><span className="no-person">Add a reservation.</span></div>
+                <div className="person__button">
                     <button className="btn btn-primary" data-toggle="modal" data-target="#myModal" onClick={this.handleClick.bind(this)}>
-                        Add/Change
+                    Add/Change
                     </button>
-                </p>
+                </div>
+                    
             </div> 
             );
         }
 
         return (
-            <div>
-                <p className="person">
-                    <span className="person-span">{Hours[this.props.hour]} {this.props.person.name} {this.props.person.phone}</span>
+            <div className="person">
+                    <div className="person__hour"><span>{Hours[this.props.hour]}</span></div>
+                    <div className="person__info"><span className="person-span"> {this.props.person.name} ({this.props.person.phone})</span></div>
+                    <div className="person__button">
                     <button className="btn btn-primary" data-toggle="modal" data-target="#myModal" onClick={this.handleClick.bind(this)}>
                         Add/Change
                     </button>
-                </p>
-         </div>
+                    </div>
+            </div>
         );
     }
     render() {

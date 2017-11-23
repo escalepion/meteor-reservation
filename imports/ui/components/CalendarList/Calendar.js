@@ -14,8 +14,10 @@ const onCalendarChange = (value) => {
 }
 const CalendarComponent = () => {
     return (
-        <div>
-            <Calendar onChange={onCalendarChange}/>
+        <div className="calendar">
+            <div>
+                <Calendar onChange={onCalendarChange}/>
+            </div>
         </div>
     );
 };

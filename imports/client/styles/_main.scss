@@ -6,4 +6,11 @@
 @import './components/page-content';
 @import './components/checkbox';
 @import './components/item';
+@import './components/person';
+@import './components/calendar';
+@import './components/reservation-modal';
+
+body {
+    background: #f2f2f2;
+}
 

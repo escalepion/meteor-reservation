@@ -1,0 +1,16 @@
+.person{
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+    display: flex;margin-top: .5rem;
+}
+.person__hour {
+    max-width: 13rem;
+    padding: $space;
+}
+.person__info {
+    flex-grow: 1;
+    padding: $space;    
+}
+.person__button{
+    padding: $space;    
+}

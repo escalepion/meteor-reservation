@@ -15,7 +15,7 @@ class ReservationModal extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState({ error: '' });
     this.setState({ errorInsert:'' });
-    typeof(nextProps.selectedHour) !== 'number' && this.setState({ error: 'There is no selected hour.'});
+    !nextProps.selectedHour && this.setState({ error: 'There is no selected hour.'});
     nextProps.person !== undefined && this.setState({ name: nextProps.person.name, phone: nextProps.person.phone});
   }
   onNameChange(e) {
@@ -67,20 +67,20 @@ class ReservationModal extends Component {
         <div className="modal-dialog">
 
           <div className="modal-content">
-            <div className="modal-header">
+            <div className="modal-header text-center">
               <button type="button" className="close" data-dismiss="modal">&times;</button>
-              <h4 className="modal-title">{this.props.date}</h4>
-              <h4 className="modal-title">{this.props.selectedHour}</h4>
+              <h1 className="modal-title">{this.props.date}</h1>
+              <h6 className="modal-title">{this.props.selectedHour}</h6>
             </div>
             <div className="modal-body">
-              <input value={this.state.name} onChange={this.onNameChange.bind(this)} placeholder="Name" />
-              <input value={this.state.phone} onChange={this.onPhoneChange.bind(this)} placeholder="5051541212" />
+              <label>Name: </label><input value={this.state.name} onChange={this.onNameChange.bind(this)} placeholder="Name" />
+              <label>Phone: </label><input value={this.state.phone} onChange={this.onPhoneChange.bind(this)} placeholder="5051541212" />
               <p>{this.state.errorInsert}</p>
-              </div>
+            </div>
             <div className="modal-footer">
-              <button onClick={this.onAddButtonClick.bind(this)}>Add/Change</button>
-              <button className={`btn ${this.state.name === '' && this.state.phone === '' && 'disabled'}`} onClick={this.onDeleteButtonClick.bind(this)}>Delete</button>
-              <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+              <button className="btn btn-primary" onClick={this.onAddButtonClick.bind(this)}>Add/Change</button>
+              <button className={`btn btn-danger ${this.state.name === '' && this.state.phone === '' && 'disabled'}`} onClick={this.onDeleteButtonClick.bind(this)}>Delete</button>
+              <button type="button" className="btn btn-warning" data-dismiss="modal">Close</button>
             </div>
           </div>
 
